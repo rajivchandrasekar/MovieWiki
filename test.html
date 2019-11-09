@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MovieInfo</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+<body>
+
+
+ <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><font id ="nav_text"color="#e50914" size="5px">M</font>
+      <font color="white" size="5px">ovi <font id ="nav_text"color="#e50914" size="5px">W</font>iki</font></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="button"><a href="/Users/preet/Downloads/MovieWiki/MovieInfo/index.html">Home</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/Users/preet/Downloads/MovieWiki/MovieInfo/signup.html">Signup  <i class="fa fa-user-plus"></i></a></li>
+        <li><a href="/Users/preet/Downloads/MovieWiki/MovieInfo/signin.html">Login<i class="fa fa-user"></i></a></li>
+        <li><a href="/Users/preet/Downloads/MovieWiki/MovieInfo/index.html">Go Back<i class="fa fa-arrow-left"></i></a></li>
+      </ul>
+    </div>
+  </div>
+ </nav>
+
+ <div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="content">
+        <h1><font id ="nav_text"color="#e50914">M</font>ovie<font id ="nav_text"color="#e50914">W</font>iki</h1>
+        <hr>
+        <div id="results" class="content">
+          <h2 id="year"></h2>
+          <h2 id="runtime"></h2>
+          <h2 id="region"></h2>
+          <h2 id ="subregion"></h2>
+          <h2 id ="cur"></h2>
+      </div>
+    </div>
+  </div>
+ </div></div>
+
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+ <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+<script type="text/javascript">
+ function start() {
+    var url_string = window.location.href;
+    console.log(url_string);
+
+        var url1 = new URL(url_string);
+    var name = window.location.search.split('=');
+
+    console.log(name[1]);
+
+    }
+   
+var url = "http://www.omdbapi.com/?&apikey=a86083e1&t="+name[1];
+   fetch(url)
+
+  .then((resp) => resp.json()) 
+  .then(function(data) {
+    console.log(data.Runtime);
+
+   document.getElementById("year").innerHTML="Year :"+data.Year;
+    
+  document.getElementById("subregion").innerHTML="Release :"+data.Released;
+    document.getElementById("region").innerHTML="Rated :"+data.Rated;
+    
+  document.getElementById("runtime").innerHTML="Runtime:"+data.Runtime;
+    
+  document.getElementById("cur").innerHTML="Genre :"+data.Genre;
+
+    })
+  .catch(function(error) {
+    console.log(error);
+  });
+  window.onload = start(); 
+</script>
+</html>
